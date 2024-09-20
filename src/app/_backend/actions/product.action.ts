@@ -19,9 +19,11 @@ export default async function productAction(state: FormState, formData: FormData
                 errors: validatedFields.error.flatten().fieldErrors
             }
         }
-        const newProdcuts = await createProducts(validatedFields.data)
-        if (newProdcuts) {
-            return
+
+        if (await createProducts(validatedFields.data)) {
+            return {
+                message: { successMessage: 'product created succesfully' }
+            }
         }
     } catch (error) {
         throw error

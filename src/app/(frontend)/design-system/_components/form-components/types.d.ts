@@ -30,7 +30,7 @@ export type FormState = {
         productSku?: string[]
     }
     message?: {
-        errMessage: string,
-        successMessage: string
+        errMessage?: string,
+        successMessage?: string
     }
 } | undefined

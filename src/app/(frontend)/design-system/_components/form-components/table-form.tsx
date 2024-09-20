@@ -1,12 +1,9 @@
 "use client";
 
 import React from "react";
-import FormSchema from ".";
 import productAction from "@/app/_backend/actions/product.action";
 import { useFormState, useFormStatus } from "react-dom";
-import { Product } from "@/app/_backend/database/schema/types";
 import { fieldNames, IFieldConfig } from "./types";
-import { object } from "zod";
 import { useToast } from "@/app/(frontend)/context/toast/toast.context";
 import RenderFormInput from "./render-form-input";
 
@@ -19,6 +16,9 @@ export default function Tableform({ data }: IProps) {
 	const { setToastProperties } = useToast();
 	const handleSubmit = (formData: FormData) => {
 		const result = action(formData);
+		if (state?.message?.successMessage) {
+			setToastProperties({visible:true, type:'success', toastMessage:state.message.successMessage})
+		}
 	};
 	return (
 		<form
