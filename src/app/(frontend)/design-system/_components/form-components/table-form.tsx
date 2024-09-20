@@ -22,14 +22,14 @@ export default function Tableform({ data }: IProps) {
 	};
 	return (
 		<form
-			className="w-full"
+			className="w-full absolute -top-8"
 			action={(formData: FormData) => {
 				handleSubmit(formData);
 			}}>
 			<tbody className="text-xs text-gray-700 uppercase relative">
 				<tr>
 					{Object.values(data).map((data, index) =>
-						<td className="border" scope="row">
+						<td className="border text-center lg:px-5 py-2" scope="row">
 							<RenderFormInput
 								className=""
 								labelName={data}
