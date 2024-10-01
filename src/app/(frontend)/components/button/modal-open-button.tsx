@@ -1,8 +1,5 @@
 "use client";
 
-import { SystemIconsCmp } from "../../design-system/_components/SystemIcons";
-import { useToggle } from "../../hooks/state/useToggle";
-
 interface IProps {
 	on: () => void;
 	className: string;

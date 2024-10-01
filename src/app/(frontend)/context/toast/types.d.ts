@@ -4,6 +4,7 @@ export type ToastConfig = {
     toastMessage: string
 };
 
+export type TToastType = "error" | "success" | "warning" | "info" | null;
 export type ToasContextValue = {
     setToastProperties: Dispatch<SetStateAction<ToastConfig>>;
 };

@@ -1,4 +1,4 @@
-import { DashBordContentLayout } from "@/app/(frontend)/design-system/app/dashboard-app/_dashboard-layout";
+import { DashBordContentLayout } from "@/app/(frontend)/design-system/app/dashboard-app/_layout/_dashboard-layout";
 import React from "react";
 
 const InevntoryManagementLayout = ({

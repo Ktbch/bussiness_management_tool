@@ -141,9 +141,71 @@ Categories are essential for organizing inventory, enhancing customer experience
 
 ### TODO APP IMPLEMENTATION
 
-[] Add A SHORTCUT COMMAND TO TOGGLE SIDE BAR
+[x] Add A SHORTCUT COMMAND TO TOGGLE SIDE BAR
 [] Add DashBoard NavBar only notification and App Settings 
 [x] create Modals design system
 [] create dropsdowns
 [] paginations
 [] SkELENTON DESIGN
+[] fix the modal design
+[] Left side bar
+[] fix types later
+[] create modal designs
+
+### TODO CREATE ORDER TABLE. 
+
+[] Make every feature in this app work
+
+
+Here’s a more detailed breakdown of how each of the colors in the suggested theme could be used for different components in your billing and inventory app:
+
+### **1. Primary Color: Deep Blue (#1E3A8A)**
+- **Best Used For:**
+  - **Text on Headers:** Primary headings (H1, H2) to create a bold and professional look.
+  - **Primary Buttons:** For the main call-to-action buttons, like "Submit" or "Save."
+  - **Links:** Use it for clickable links to give them visibility without overloading the design.
+  - **Icons or Highlights:** As a color for primary icons (e.g., menu icons, key feature icons).
+  - **Navigation Bar:** The background color of the navigation bar to add professionalism.
+
+### **2. Secondary Color: Teal (#14B8A6)**
+- **Best Used For:**
+  - **Secondary Buttons:** Use this for secondary actions like "Cancel" or "Edit."
+  - **Tabs or Card Headers:** To add contrast and guide users' eyes toward different sections.
+  - **Hover States:** On primary button hover or link hover for smooth interaction effects.
+  - **Form Highlights:** Accent fields or borders of form inputs when focused (active state).
+  - **Borders or Separators:** Can be used for subtle borders or dividers to give a sleek, modern touch.
+
+### **3. Accent Color: Amber (#F59E0B)**
+- **Best Used For:**
+  - **Important Buttons:** Like "Delete" or "Important Actions" that should grab attention.
+  - **Alert Badges:** Use amber for informational or mild alert messages (non-critical).
+  - **Notifications:** For notification bubbles or new activity indicators, sparingly.
+  - **Icons or Button Hover Effects:** Adds a pop of color without overwhelming the design.
+  
+### **4. Neutral Color: Cool Gray (#F3F4F6 for backgrounds, #6B7280 for text)**
+- **Best Used For:**
+  - **Background Color:** For general backgrounds, especially on dashboards and tables, to keep things light and clean.
+  - **Body Text:** Use the darker cool gray (#6B7280) for general body text to ensure good readability against lighter backgrounds.
+  - **Borders:** Light gray for card outlines, table borders, or form field borders for minimal, clean lines.
+  - **Placeholder Text:** In input fields to maintain a subtle but visible hint.
+
+### **5. Error/Warning Color: Red (#DC2626)**
+- **Best Used For:**
+  - **Error Messages:** Text and icon color for error messages, form validation, or failed actions.
+  - **Form Field Highlights:** Border color of fields with invalid inputs or errors.
+  - **Critical Buttons:** For actions like "Delete" or "Reset" that are irreversible and need caution.
+  - **Alerts:** Red badges or icons for high-priority alerts and warnings.
+
+### **6. Success Color: Green (#10B981)**
+- **Best Used For:**
+  - **Success Messages:** Feedback after a successful form submission, payment completion, etc.
+  - **Success Icons:** Use green checkmarks or icons to indicate successful actions.
+  - **Positive Alerts:** For indicators of success, like "Payment processed" or "Item added."
+  - **Buttons for Confirmation Actions:** Like "Approve," "Confirm," or "Mark as Paid."
+
+### **General Use of Colors in Components:**
+- **Backgrounds:** Keep the overall background light and neutral (Cool Gray #F3F4F6) to maintain readability and focus on the key elements.
+- **Text:** Use the darker neutral gray (#6B7280) for most text, while deep blue (#1E3A8A) is reserved for headings and important text.
+- **Buttons:** The primary blue (#1E3A8A) should dominate important buttons, while secondary buttons can use teal (#14B8A6), and action buttons or warnings use amber (#F59E0B) or red (#DC2626).
+  
+This breakdown helps ensure each color is used purposefully, contributing to a cohesive, professional, and user-friendly app design.

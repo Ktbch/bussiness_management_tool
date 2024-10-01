@@ -17,7 +17,7 @@ export default function DelayRender({ children, delayWait }: IProps) {
 				clearTimeout(timer);
 			};
 		},
-		[delayed]
+		[delayed, delayWait]
 	);
 
 	return !delayed && children;

@@ -1,18 +1,19 @@
 import { Product } from "@/app/_backend/database/schema/types";
-import InventoryManagementHeader from "./header";
-import InventoryManagementBody from "./body";
+import DashboardContentHeader from "../../design-system/app/dashboard-app/_layout/dashboard-content-header";
+import InventoryManagementBody from "../../design-system/app/dashboard-app/inventory-managment/inventory-mangement-body";
 
-interface IProps {
+interface IProps{
 	data: Product[];
-	quantity:number
+	quantity: number
+	resource:string
 }
 
-// TODO create A Product Context that would suplly the data to all the component
-export default function InventoryManagementView({ data, quantity }: IProps) {
+// TODO FIND SOMETHNIG TO USE INSTEAD OF FRAGMENTS
+export default function InventoryManagementView({ data, quantity, resource }: IProps) {
 	return (
-			<>
-			<InventoryManagementHeader  quantity={quantity} />
-			<InventoryManagementBody data={data} quantity={quantity} />
-			</>
+		<>
+			<DashboardContentHeader quantity={quantity} resource={resource} />
+			<InventoryManagementBody data={data} quantity={quantity} resource={resource} />
+		</>
 	);
 }

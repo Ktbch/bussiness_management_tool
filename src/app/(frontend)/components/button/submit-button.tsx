@@ -1,17 +1,20 @@
 "use client";
+
+import { useFormStatus } from "react-dom";
+
 interface IProps {
-	pending: boolean;
 	buttonName: string;
 	pendingtext: string;
 	className?: string;
 }
 
 export const SubmitButton = ({
-	pending,
 	pendingtext,
 	buttonName,
 	className
 }: IProps) => {
+	const { pending } = useFormStatus();
+	console.log(pending);
 	return (
 		<button
 			disabled={pending}

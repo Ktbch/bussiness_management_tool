@@ -1,7 +1,7 @@
 "use client";
 
 import FormInput from "./form-input";
-import TableFormInput from "./table-form-input";
+import { FormSelect } from "./SelectInput";
 import TextArea from "./text-area";
 import { InputTypeConfig } from "./types";
 
@@ -13,11 +13,12 @@ const RenderFormInput = ({ ...formProps }: InputTypeConfig) => {
 		case "email":
 		case "password":
 		case "number":
+		case "checkbox":
 			return <FormInput {...formProps} />;
 		case "textArea":
 			return <TextArea {...formProps} />;
-		case "tableFormInput":
-			return <TableFormInput {...formProps} />;
+		case "select":
+			return <FormSelect {...formProps} />;
 	}
 };
 

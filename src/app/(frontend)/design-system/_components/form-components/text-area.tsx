@@ -1,9 +1,8 @@
-import InputAndLabel from "./inputandLabel";
 import TextAreaAndLabel from "./TextArea";
-import { InputTypeConfig, Types } from "./types";
+import { InputTypeConfig, InputTypes } from "./types";
 
 interface IProps extends InputTypeConfig {
-	type: Types;
+	type: InputTypes;
 }
 
 const TextArea = ({ ...formProps }: IProps) => {

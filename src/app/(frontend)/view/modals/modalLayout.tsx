@@ -1,17 +1,12 @@
 "use client";
 import React from "react";
-import ModalOpenButton from "../../components/button/modal-open-button";
-import { useToggle } from "../../hooks/state/useToggle";
 import { SystemIconsCmp } from "../../design-system/_components/SystemIcons";
-import { SystemIconsKeys } from "../../constants/icons";
-import { useBlurContext } from "../../context/blur/blur.context";
-import { AppBlur } from "../../components/app-blur";
 
 interface IProps {
 	children: React.ReactNode;
-	modalButtonIcon: SystemIconsKeys;
-	modalButtonName: string;
-	modalButtonClassName: string;
+	isOn: boolean;
+	off: () => void;
+	title: string;
 }
 
 const CancelButton = ({ off }: { off: () => void }) => {
@@ -22,29 +17,25 @@ const CancelButton = ({ off }: { off: () => void }) => {
 	);
 };
 
-export default function ModalLayout({
-	children,
-	modalButtonIcon,
-	modalButtonName,
-	modalButtonClassName
-}: IProps) {
-	const { isOn, on, off } = useToggle();
-//    TODO BLUR
+export default function ModalLayout({ children, isOn, off, title }: IProps) {
 	return (
-		<>
-			<div
-				className={` ${isOn
-					? "block blur-0 "
-					: "hidden"} fixed blur-0 top-[5%]  bg-slate-400 rounded-md left-[40%] border p-3 transition-all duration-100 ease-in-out `}>
-				{children}
-				<div className="absolute top-6 left-[80%]">
-					<CancelButton off={off} />
+		<div
+			className={` ${isOn
+				? "block"
+				: "hidden"}   overflow-y-auto overflow-x-hidden  top-0 right-0 left-0  justify-center w-full md:inset-0 h-auto max-h-full  fixed inset-0 bg-black bg-opacity-50 flex items-center  z-50  transition-all`}>
+			<div className="relative p-4 w-full max-w-2xl max-h-full">
+				<div className="relative p-4 bg-white rounded-lg shadow sm:p-5 ">
+					<div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 ">
+						<h1>
+							{title}
+						</h1>
+						<div className="absolute top-6 left-[90%]">
+							<CancelButton off={off} />
+						</div>
+					</div>
+					{children}
 				</div>
 			</div>
-			<ModalOpenButton on={on} className={modalButtonClassName}>
-				{modalButtonName}
-				<SystemIconsCmp icon={modalButtonIcon} iconStyle="h-5 w-5" />
-			</ModalOpenButton>
-		</>
+		</div>
 	);
 }

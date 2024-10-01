@@ -19,7 +19,7 @@ export const DashBoardApp = ({ children }: IProps) => {
 		[isClient]
 	);
 	return (
-		<div className="" id="gaussian-portal-0">
+		<div className="bg-neturalColor" id="gaussian-portal-0">
 			<div className="flex w-full flex-row">
 				<Sidebar isFullWidth={isFullWidth} setFullWidth={setFullWidth} />
 				<div

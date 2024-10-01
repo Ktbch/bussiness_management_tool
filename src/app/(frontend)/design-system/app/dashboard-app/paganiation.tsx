@@ -1,52 +1,49 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { SystemIconsCmp } from "../../_components/SystemIcons";
 
 // TODO ANALYASE IF THESE IS WELL OPMTIMIZED
+// TODO FIX THIS COMPONENT
 
 interface IProps {
 	quantity: number;
+	page: number;
+	setPage: Dispatch<SetStateAction<number>>;
 }
 interface PAGNITAION {
 	page: number;
 	totalPages: number;
 	setPage: Dispatch<SetStateAction<number>>;
 }
-export default function PaganiationBtn({
-	page,
-	setPage,
-	totalPages
-}: PAGNITAION) {
+
+// fix this pagination
+export default function PaganiationBtn({ page, setPage }: PAGNITAION) {
 	return (
-		<div className="flex items-center gap-5">
+		<div className="flex items-center gap-1">
 			<button
-				className={`${page === 0 ? "hidden" : "block"} `}
+				className={`${page === 0 ? "hidden" : "block"} text-accentColor `}
 				onClick={() => setPage(prevState => prevState - 1)}>
-				Prev
+				<SystemIconsCmp icon="Left" iconStyle="h-4 w-4" />
 			</button>
 			<button
-				className={`${totalPages - 1 === page ? "hidden" : "block"}`}
+				className={` block text-accentColor`}
 				onClick={() => setPage(prevState => prevState + 1)}>
-				Next
+				<SystemIconsCmp icon="Right" iconStyle="h-4 w-4" />
 			</button>
 		</div>
 	);
 }
 
-export const PaginationCmp = ({ quantity }: IProps) => {
-	const [page, setPage] = useState(0);
-
-	const { replace } = useRouter();
-	replace(`/dashboard/inventory-management?page=${page}`);
-
+export const PaginationCmp = ({ quantity, page, setPage }: IProps) => {
 	const totalPages = Math.round(quantity / 4);
-	console.log(totalPages);
+
+	// console.log(page);
+	// console.log(quantity);
 
 	return (
 		<div className="flex items-center gap-5">
-			<span className="text-sm">
+			<span className="text-sm text-netualColor2">
 				pages {page + 1} of {totalPages}
 			</span>
 			<PaganiationBtn page={page} setPage={setPage} totalPages={totalPages} />

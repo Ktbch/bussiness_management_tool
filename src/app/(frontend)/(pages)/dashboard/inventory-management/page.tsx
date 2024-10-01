@@ -1,8 +1,9 @@
 "use server";
 
-import TableSkeleton from "@/app/(frontend)/design-system/app/dashboard-app/table/_tableSkeleton";
+// import TableSkeleton from "@/app/(frontend)/design-system/app/dashboard-app/components/table/_tableSkeleton";
 import InventoryManagementView from "@/app/(frontend)/view/inventory-management";
 import productData from "@/app/_backend/data/product/product.data";
+// import { revalidatePath } from "next/cache";
 
 interface IProps {
 	searchParams: {
@@ -17,7 +18,11 @@ const InventoryManagementPage = async ({ searchParams }: IProps) => {
 		searchParams.page
 	);
 	return (
-		<InventoryManagementView data={allProducts} quantity={allProductsLenght} />
+		<InventoryManagementView
+			data={allProducts}
+			quantity={allProductsLenght}
+			resource="products"
+		/>
 		// <TableSkeleton />
 	);
 };

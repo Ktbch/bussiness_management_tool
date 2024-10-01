@@ -1,47 +1,37 @@
 "use client";
 
-import {
-	createContext,
-	ReactNode,
-	SetStateAction,
-	useContext,
-	useState
-} from "react";
-import { ToasContextValue, ToastConfig } from "./types";
+import { createContext, useCallback, useContext, useState } from "react";
 import { ToastCmp } from "../../components/toasts";
 
-const initalState: ToasContextValue = {
-	setToastProperties: (value: SetStateAction<ToastConfig>) => {}
-};
+interface IToastConfig {
+	toast: (message: string) => void;
+	removeToast: (after: number) => NodeJS.Timeout;
+}
 
-const toastPropertiesInitailValue: ToastConfig = {
-	visible: false,
-	type: null,
-	toastMessage: ""
-};
+const toastContext = createContext<IToastConfig | null>(null);
 
-const toastContext = createContext<ToasContextValue>(initalState);
+export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
+	const [message, setMessage] = useState("");
 
-export const ToastProvider = ({ children }: { children: ReactNode }) => {
-	//  TODO check possible refactoring for this code
-	const [toastProperties, setToastProperties] = useState<ToastConfig>(
-		toastPropertiesInitailValue
-	);
+	const toast = useCallback((message: string) => setMessage(message), [
+		message
+	]);
+
+	const removeToast = (after: number) =>
+		setTimeout(() => setMessage(""), after);
+
 	const value = {
-		setToastProperties
+		toast,
+		removeToast
 	};
 	return (
 		<toastContext.Provider value={value}>
 			{children}
-			{toastProperties.visible &&
-				<ToastCmp
-					type={toastProperties.type}
-					toastMessage={toastProperties.toastMessage}
-				/>}
+			<ToastCmp toastMessage={message} />
 		</toastContext.Provider>
 	);
 };
 
-export const useToast = () => {
+export const useToastContext = () => {
 	return useContext(toastContext);
 };

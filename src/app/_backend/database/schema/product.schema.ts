@@ -1,6 +1,6 @@
-import { pgEnum, pgTable, serial, text } from "drizzle-orm/pg-core";
+import { pgTable, serial, text } from "drizzle-orm/pg-core";
 
-const category = pgEnum('catgoryEnum', ['new', 'old', 'semi-old'])
+// const category = pgEnum('catgoryEnum', ['new', 'old', 'semi-old'])
 
 export const productTable = pgTable('product_table', {
     id: serial('id').primaryKey(),

@@ -28,7 +28,7 @@ import { eq } from 'drizzle-orm'
 //     dialect: "pg";
 // }
 
-type TActionConfig = 'insert' | 'select' | 'update' | 'delete'
+// type TActionConfig = 'insert' | 'select' | 'update' | 'delete'
 // TODO implement this also
 // const dbQuery = async (action: 'insert' | 'select', table: PgTableWithColumns<any>, value: any) => {
 //     return await db[action](table).values(value)

@@ -1,5 +1,5 @@
 {
-  "id": "39be31d9-704d-4c26-b058-746a455d596b",
+  "id": "1110e2b0-7fed-4bba-a313-1472a5dcc125",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -50,6 +50,59 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
+    "public.sales_order_table": {
+      "name": "sales_order_table",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "productName": {
+          "name": "productName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "productPrice": {
+          "name": "productPrice",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "productQuantity": {
+          "name": "productQuantity",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "productDescription": {
+          "name": "productDescription",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "public.user_table": {
       "name": "user_table",
       "schema": "",
@@ -79,7 +132,16 @@
       "uniqueConstraints": {}
     }
   },
-  "enums": {},
+  "enums": {
+    "public.status": {
+      "name": "status",
+      "schema": "public",
+      "values": [
+        "paid",
+        "unpaid"
+      ]
+    }
+  },
   "schemas": {},
   "sequences": {},
   "_meta": {
