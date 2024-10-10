@@ -1,1 +1,0 @@
-ALTER TABLE "sales_order_table" DROP COLUMN IF EXISTS "createdAt";

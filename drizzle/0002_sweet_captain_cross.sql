@@ -1,0 +1,1 @@
+ALTER TYPE "productStockStatus" ADD VALUE 'low stock';

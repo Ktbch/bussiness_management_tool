@@ -51,13 +51,12 @@ export async function createProduct(state: FormState, formData: FormData) {
             productName: formData.get('productName'),
             productPrice: formData.get('productPrice'),
             productQuantity: formData.get('productQuantity'),
-            productDescription: formData.get('productDescription'),
             productSku: formData.get('productSku'),
         })
         if (!validatedFields.error) {
-            await createProducts(validatedFields.data)
+            const result = await createProducts(validatedFields.data)
             return {
-                message: { successMessage: 'product created succesfully' }
+                message: { successMessage: result }
             }
         }
         return {
@@ -75,11 +74,13 @@ export async function updateProduct(state: FormState, formData: FormData, id?: n
             productName: formData.get('productName'),
             productPrice: formData.get('productPrice'),
             productQuantity: formData.get('productQuantity'),
-            productDescription: formData.get('productDescription'),
+            productStockStatus: formData.get('productStockStatus'),
             productSku: formData.get('productSku'),
         })
+
+        console.log(validatedFields.data?.productStockStatus)
         if (!validatedFields.error) {
-            await updateProduct({ ...validatedFields.data, id: id! })
+            await updateProduct(validatedFields.data)
             return {
                 message: { successMessage: 'product created succesfully' }
             }
@@ -93,9 +94,13 @@ export async function updateProduct(state: FormState, formData: FormData, id?: n
 }
 
 export async function deleteProduct(id: number) {
-    const { deleteProduct } = await productRepository()
-    if (!id) return 'an identifier is needed'
-    await deleteProduct(id)
-    return 'product sucessfully deleted'
+    try {
+        const { deleteProduct } = await productRepository()
+        if (!id) return 'an identifier is needed'
+        await deleteProduct(id)
+        return 'product sucessfully deleted'
+    } catch (error) {
+        throw error
+    }
 
 }

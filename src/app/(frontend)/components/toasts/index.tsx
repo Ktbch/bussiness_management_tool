@@ -5,7 +5,6 @@ interface IProps {
 }
 export const ToastCmp = ({ toastMessage }: IProps) => {
 	// TODO USE TYPE TO MANIPULATE THE COLORS IF THE TOAST
-	// TODO fix toastMessage
 
 	return (
 		<div

@@ -1,1 +1,0 @@
-ALTER TABLE "sales_order_table" RENAME COLUMN "status" TO "status::status";

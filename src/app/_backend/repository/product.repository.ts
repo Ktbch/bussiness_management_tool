@@ -34,12 +34,43 @@ import { eq } from 'drizzle-orm'
 //     return await db[action](table).values(value)
 // }
 
+
+type TStockStatus = "full stock" | "average stock" | "out of stock" | "low stock" | undefined
+
+
+const toggleStatus = (quantity: number, lowStockCount: number, highStockCount: number): TStockStatus => {
+    switch (true) {
+        case (quantity > 0) && quantity <= lowStockCount:
+            return 'low stock'
+        case (quantity > lowStockCount && quantity <= highStockCount):
+            return 'average stock'
+        case (quantity > highStockCount):
+            return 'full stock'
+        case (quantity === 0):
+            return 'out of stock'
+        default:
+            return undefined
+
+    }
+
+}
+
 export default async function productRepository() {
+    const lowStockCount = 50
+    const highStockCount = 100
     return {
         async createProducts(product: NewProduct) {
+            // const lowStockCount = 50
+            // const highStockCount = 100
             try {
-                const createdProduct = await db.insert(productTable).values(product).returning()
-                return createdProduct
+                const productExists = await db.select().from(productTable).where(eq(productTable.productName, product.productName))
+
+                console.log(productExists)
+                if (productExists[0]) return 'product already exists'
+
+                await db.insert(productTable).values({ ...product, productStockStatus: toggleStatus(parseInt(product.productQuantity), lowStockCount, highStockCount) })
+                return 'product created succesfully'
+
             } catch (error) {
                 throw error
             }
@@ -62,7 +93,7 @@ export default async function productRepository() {
         },
         async updateProduct(product: Product) {
             try {
-                const updatedProduct = await db.update(productTable).set(product).where(eq(productTable.id, product.id)).returning()
+                const updatedProduct = await db.update(productTable).set({ ...product, productStockStatus: toggleStatus(parseInt(product.productQuantity), lowStockCount, highStockCount) }).where(eq(productTable.id, product.id)).returning()
                 return updatedProduct
             } catch (error) {
                 throw error

@@ -30,8 +30,9 @@ export default class GenerateOptionsObj<T extends SalesOrder | Product> {
 		this.options = options;
 	}
 	openEditModal = () => {
-		const { on, setModalCmp, editModalCmp } = this.optionsParams;
+		const { on, setModalCmp, editModalCmp, id } = this.optionsParams;
 		on();
+		// this is done this way because react components actually takes object as params
 		setModalCmp(editModalCmp);
 	};
 

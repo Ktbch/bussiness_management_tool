@@ -1,5 +1,5 @@
 {
-  "id": "1110e2b0-7fed-4bba-a313-1472a5dcc125",
+  "id": "35b34292-f36b-4844-8797-8ef8e08d2a95",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -32,11 +32,12 @@
           "primaryKey": false,
           "notNull": true
         },
-        "productDescription": {
-          "name": "productDescription",
-          "type": "text",
+        "productStockStatus": {
+          "name": "productStockStatus",
+          "type": "productStockStatus",
+          "typeSchema": "public",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "SKU": {
           "name": "SKU",
@@ -90,12 +91,6 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
-        },
-        "createdAt": {
-          "name": "createdAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
         }
       },
       "indexes": {},
@@ -133,6 +128,15 @@
     }
   },
   "enums": {
+    "public.productStockStatus": {
+      "name": "productStockStatus",
+      "schema": "public",
+      "values": [
+        "full stock",
+        "average stock",
+        "out of stock"
+      ]
+    },
     "public.status": {
       "name": "status",
       "schema": "public",

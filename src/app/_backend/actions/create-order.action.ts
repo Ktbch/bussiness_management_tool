@@ -18,16 +18,13 @@ export default async function createOrderAction(state: FormState, formData: Form
             status: formData.get('status'),
         })
 
-        // TODO DO THIS IN A BETTER WAY
-        //  use enums and select instead
-        console.log(formData.get('status'))
+
         if (!validatedFields.error) {
-            await createOrder({
+            const result = await createOrder({
                 ...validatedFields.data, status: validatedFields.data.status
             })
-            await balanceProduct(validatedFields.data.productSold, parseInt(validatedFields.data.quantitySold))
             return {
-                message: { successMessage: 'created successfully' }
+                message: { successMessage: result }
             }
         }
 

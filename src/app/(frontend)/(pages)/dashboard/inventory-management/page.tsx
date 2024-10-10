@@ -12,8 +12,6 @@ interface IProps {
 }
 
 const InventoryManagementPage = async ({ searchParams }: IProps) => {
-	// Todo Refactor this
-
 	const { allProducts, allProductsLenght } = await productData(
 		searchParams.page
 	);

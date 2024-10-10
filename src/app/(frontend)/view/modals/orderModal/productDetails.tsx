@@ -6,7 +6,6 @@ interface IProps {
 	data: Product;
 }
 
-// TODO FIX TYPES AND REFACTOR
 export default function ProductDetails({ data }: IProps) {
 	return (
 		<div className=" max--w-7xl m-auto flex flex-col gap-5 mt-10 text-md font-semibold items-start p-5 ">
@@ -14,10 +13,7 @@ export default function ProductDetails({ data }: IProps) {
 				{data.productName}
 			</h1>
 			<div className="text-start  tracking-wide">
-				{data.productDescription} Lorem ipsum dolor sit amet consectetur
-				adipisicing elit. Nobis accusamus odit corporis. Delectus eaque suscipit
-				nobis tempore laudantium, velit deleniti architecto officia quis saepe,
-				vel, impedit nihil harum molestiae?
+				{data.productStockStatus}
 			</div>
 			<div className="flex items-center gap-10">
 				<p>

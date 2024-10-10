@@ -16,6 +16,7 @@ export default function CreateProducts({ off }: { off: () => void }) {
 			state={state}
 			className="border p-3 w-full "
 			fields={CreateProductFields}
+			options={["full stock", "average stock", "high stock"]}
 			crudStyles="grid gap-2 mb-4 sm:grid-cols-2"
 		/>
 	);

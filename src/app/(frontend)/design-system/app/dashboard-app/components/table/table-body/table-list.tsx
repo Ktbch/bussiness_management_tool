@@ -42,10 +42,10 @@ export default function TableList<T extends Product | SalesOrder>({
 		on,
 		refresh,
 		setModalCmp,
-		isSelected,
-		setSelected
+		isSelected
 	} = useTable();
 
+	// TODO FIX THIS DELETE FUNTION
 	const optionsParams: IOptionsFuncConfig<T> = {
 		actionFunc: actionFunc,
 		detailsModalCmp: detalsCmp,
@@ -67,22 +67,33 @@ export default function TableList<T extends Product | SalesOrder>({
 	const tableOptions = generateTableOptionsObj.generateTableOptionsObj();
 
 	// TODO DELETE ALL
-	const handleClick = (id: number) => {
-		console.log(id);
-		setSelected(!isSelected);
+
+	const stockStatusColorPicker = (data: string | number | null) => {
+		switch (data) {
+			case "low stock":
+				return "text-errorColor";
+			case "average stock":
+				return "text-primaryColor";
+			case "full stock":
+				return "text-secondaryColor";
+			case "out of stock":
+				return "text-netualColor2";
+			default:
+				return;
+		}
 	};
 	return (
 		<tr className="border-b border-l">
 			{tableData &&
 				Object.values(tableData).map((data, index) =>
+					//  seprated this td to its seperate component
 					<td
 						scope="row"
-						className={` ${isSelected
-							? "bg-blue-300"
-							: ""} border text-center lg:px-5 py-2 cursor-pointer`}
-						key={index}
-						onClick={() => handleClick(tableData.id)}>
-						{data}
+						className={`border text-center lg:px-5 py-2 cursor-pointer`}
+						key={index}>
+						<span className={stockStatusColorPicker(data)}>
+							{data}
+						</span>
 					</td>
 				)}
 			{/* TODO TRY TO IMPROVE THIS FUNCTION */}

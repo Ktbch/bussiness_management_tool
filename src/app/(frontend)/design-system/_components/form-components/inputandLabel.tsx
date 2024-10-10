@@ -9,7 +9,7 @@ const InputAndLabel = ({ type, placeholder, className, labelName, state }: Input
 			<div className="relative">
 				<input type={type} placeholder={placeholder} className={`outline-none w-64 h-10 border  
 					focus:border-secondaryColor p-3 rounded-sm \
-					${labelName === 'id' ? 'hidden' : 'block'
+					${labelName === 'id' ? 'block' : 'block'
 					} ${className}`}  name={labelName} />
 				{state?.errors &&
 				     <div className="bg-neturalColor mt-2 p-2">

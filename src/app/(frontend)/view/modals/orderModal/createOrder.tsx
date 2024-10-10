@@ -16,7 +16,7 @@ export default function CreateOrders({ off }: { off: () => void }) {
 			state={state}
 			className="border p-3 w-full"
 			fields={CreateOrderFields}
-			options={["paid", "unpaid"]}
+			options={["paid", "unppaid"]}
 			crudStyles="grid gap-2 mb-4 sm:grid-cols-2"
 		/>
 	);

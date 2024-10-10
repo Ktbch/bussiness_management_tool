@@ -1,1 +1,0 @@
-ALTER TABLE "sales_order_table" ALTER COLUMN "createdAt" SET DEFAULT now();

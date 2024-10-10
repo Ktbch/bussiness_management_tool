@@ -8,7 +8,7 @@ export interface InputTypeConfig {
     options?: string[]
 }
 
-export type fieldNames = 'username' | 'password' | 'productName' | 'productPrice' | 'productQuantity' | 'productDescription' | 'productSku' | 'productSold' | 'quantity' | 'price' | 'discount' | 'status' | 'id';
+export type fieldNames = 'username' | 'password' | 'productName' | 'productPrice' | 'productQuantity' | 'productStockStatus' | 'productSku' | 'productSold' | 'quantity' | 'price' | 'discount' | 'status' | 'id';
 export type InputTypes = "text" | "password" | "email" | 'number' | 'textArea' | 'tableFormInput' | 'checkbox' | 'select'
 
 export interface IFieldConfig {
@@ -25,8 +25,7 @@ export type FormState = {
         productName?: string[]
         productPrice?: string[]
         productQuantity?: string[]
-        productDescription?: string[]
-        productDescription?: string[],
+        productStockStatus?: string[]
         productSku?: string[],
         productSold?: string[],
         quantity?: string[],

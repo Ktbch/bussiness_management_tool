@@ -9,7 +9,6 @@ export const CreateProductFields: IFieldConfig[] = [
     { name: "productName", placeholder: 'product name', type: 'text' },
     { name: "productPrice", placeholder: 'product price', type: 'number' },
     { name: "productQuantity", placeholder: 'product price', type: 'number' },
-    { name: "productDescription", placeholder: 'product description', type: 'textArea' },
     { name: "productSku", placeholder: 'product sku', type: 'text' },
 ]
 
@@ -18,7 +17,7 @@ export const UpdateProductFields: IFieldConfig[] = [
     { name: "productName", placeholder: 'product name', type: 'text' },
     { name: "productPrice", placeholder: 'product price', type: 'number' },
     { name: "productQuantity", placeholder: 'product price', type: 'number' },
-    { name: "productDescription", placeholder: 'product description', type: 'textArea' },
+    { name: "productStockStatus", placeholder: 'status', type: 'select' },
     { name: "productSku", placeholder: 'product sku', type: 'text' },
 ]
 

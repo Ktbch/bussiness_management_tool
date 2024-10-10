@@ -142,18 +142,21 @@ Categories are essential for organizing inventory, enhancing customer experience
 ### TODO APP IMPLEMENTATION
 
 [x] Add A SHORTCUT COMMAND TO TOGGLE SIDE BAR
-[] Add DashBoard NavBar only notification and App Settings 
+[x] Add DashBoard NavBar only notification and App Settings 
 [x] create Modals design system
-[] create dropsdowns
-[] paginations
+[x] create dropsdowns
+[x] paginations
 [] SkELENTON DESIGN
-[] fix the modal design
+[x] fix the modal design
 [] Left side bar
-[] fix types later
-[] create modal designs
+[x] fix types later
+[x] create modal designs
 
 ### TODO CREATE ORDER TABLE. 
-
+[] edit function 
+[] delete function
+[] fix pagniation
+[]
 [] Make every feature in this app work
 
 
@@ -209,3 +212,11 @@ Here’s a more detailed breakdown of how each of the colors in the suggested th
 - **Buttons:** The primary blue (#1E3A8A) should dominate important buttons, while secondary buttons can use teal (#14B8A6), and action buttons or warnings use amber (#F59E0B) or red (#DC2626).
   
 This breakdown helps ensure each color is used purposefully, contributing to a cohesive, professional, and user-friendly app design.
+
+### Things that are not working in the app
+[] We can't delete successfully
+[] We can't edit successfully
+[] We can't  genreate recipt yet
+[] we can't mark as paid yet 
+
+### create a way where user can specify when he has a low stock of a particular product

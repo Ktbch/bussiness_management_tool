@@ -5,50 +5,22 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1727757149401,
-      "tag": "0000_dizzy_gressill",
+      "when": 1728483599202,
+      "tag": "0000_vengeful_baron_strucker",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1727757278068,
-      "tag": "0001_same_pride",
+      "when": 1728483905577,
+      "tag": "0001_parched_human_fly",
       "breakpoints": true
     },
     {
       "idx": 2,
       "version": "7",
-      "when": 1727757500103,
-      "tag": "0002_wet_hardball",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1727758173213,
-      "tag": "0003_colossal_skullbuster",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1727758235372,
-      "tag": "0004_optimal_deathstrike",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1727758312314,
-      "tag": "0005_chilly_whiplash",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1727758850298,
-      "tag": "0006_secret_carnage",
+      "when": 1728542030871,
+      "tag": "0002_sweet_captain_cross",
       "breakpoints": true
     }
   ]

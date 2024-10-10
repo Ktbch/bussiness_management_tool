@@ -8,8 +8,6 @@ interface IProps {
 }
 
 export default function DashboardContentHeader({ quantity, resource }: IProps) {
-	// TODO cal all product
-	// TODO ALl Product quantity amount
 	const pathName = usePathname();
 	return (
 		<div className="flex items-center gap-10 font-bold text-netualColor2">

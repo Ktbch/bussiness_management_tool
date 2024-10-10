@@ -4,8 +4,9 @@ import { updateProduct } from "@/app/_backend/actions/product.action";
 import FormSchema from "@/app/(frontend)/design-system/_components/form-components";
 import { UpdateProductFields } from "@/app/(frontend)/constants/form-constants";
 import { useMutation } from "@/app/(frontend)/hooks/useMutation";
+import { OPTIONS_CONSTANTS_OBJECT } from "@/app/(frontend)/constants";
 
-export default function UpdateProducts() {
+export const UpdateProducts = () => {
 	const { handleMutation, state } = useMutation(updateProduct);
 
 	return (
@@ -16,7 +17,8 @@ export default function UpdateProducts() {
 			state={state}
 			className="border p-3 w-full "
 			fields={UpdateProductFields}
+			options={OPTIONS_CONSTANTS_OBJECT.PRODUCT_STOCK_STATUS}
 			crudStyles="grid gap-2 mb-4 sm:grid-cols-2"
 		/>
 	);
-}
+};
