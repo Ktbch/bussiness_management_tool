@@ -35,15 +35,7 @@ export default function TableList<T extends Product | SalesOrder>({
 }: ITableListConfig<T>) {
 	// TODO REMOVE ALL THE STATE HANDLING FROM THE TABLE LIST
 	// TODO MAKE THIS TABLE LIOST MORE OF A RESUABLE COMPONETS
-	const {
-		isOn,
-		modalCmp,
-		off,
-		on,
-		refresh,
-		setModalCmp,
-		isSelected
-	} = useTable();
+	const { isOn, modalCmp, off, on, refresh, setModalCmp } = useTable();
 
 	// TODO FIX THIS DELETE FUNTION
 	const optionsParams: IOptionsFuncConfig<T> = {

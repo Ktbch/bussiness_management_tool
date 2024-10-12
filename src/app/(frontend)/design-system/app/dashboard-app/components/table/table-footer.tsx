@@ -10,6 +10,7 @@ export const TableFooter = ({ quantity }: { quantity: number }) => {
 	const pathname = usePathname();
 
 	replace(`${pathname}?page=${page}`);
+
 	return (
 		<tfoot>
 			<tr className="border w-full">

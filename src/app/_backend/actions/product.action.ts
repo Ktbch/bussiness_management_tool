@@ -3,13 +3,16 @@
 import { FormState } from "@/app/(frontend)/design-system/_components/form-components/types";
 import { createProductSchema } from "@/app/lib/zod-schema";
 import productRepository from "../repository/product.repository";
+import { Socket } from 'socket.io'
 
 
 
 export default async function productActions() {
     return {
         async createProduct(state: FormState, formData: FormData) {
+
             const { createProducts } = await productRepository()
+            // const server = new Socket()
             try {
                 const validatedFields = createProductSchema.safeParse({
                     productName: formData.get('productName'),
