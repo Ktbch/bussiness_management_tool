@@ -1,3 +1,6 @@
+"use client";
+
+import { useItemIdentifier } from "../../context/items-identifier/itemsIdentifier";
 import { TOption } from "../../design-system/app/dashboard-app/components/table/constansts";
 
 interface IProps {
@@ -7,21 +10,30 @@ interface IProps {
 		func: () => void;
 	}[];
 	isDropDownActive: boolean;
+	tableDataId: number;
 	// on: () => void;
 }
 
 const DropDownItems = ({
-	options
+	options,
+	tableDataId
 }: {
 	options: {
 		option: TOption;
 		func: () => void;
 	};
+	tableDataId: number;
 }) => {
 	const { option } = options;
+	const { memorizeIdentifier } = useItemIdentifier();
+
+	const handleClick = () => {
+		memorizeIdentifier(tableDataId);
+		options.func();
+	};
 	return (
 		<button
-			onClick={options.func}
+			onClick={handleClick}
 			className={`flex flex-col px-10 py-2  border w-[100%] bg-neturalColor text-netualColor2 items-start`}>
 			{option}
 		</button>
@@ -31,7 +43,8 @@ const DropDownItems = ({
 export default function DropDwonCmp({
 	button,
 	options,
-	isDropDownActive
+	isDropDownActive,
+	tableDataId
 }: IProps) {
 	return (
 		<div className="relative">
@@ -39,7 +52,11 @@ export default function DropDwonCmp({
 			<div className="absolute  z-10 transition-all">
 				{isDropDownActive &&
 					options.map((option, index) =>
-						<DropDownItems options={option} key={index} />
+						<DropDownItems
+							options={option}
+							key={index}
+							tableDataId={tableDataId}
+						/>
 					)}
 			</div>
 		</div>

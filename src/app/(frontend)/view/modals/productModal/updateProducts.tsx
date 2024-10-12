@@ -5,14 +5,19 @@ import FormSchema from "@/app/(frontend)/design-system/_components/form-componen
 import { UpdateProductFields } from "@/app/(frontend)/constants/form-constants";
 import { useMutation } from "@/app/(frontend)/hooks/useMutation";
 import { OPTIONS_CONSTANTS_OBJECT } from "@/app/(frontend)/constants";
+import {
+	ItemIdentifierProvider,
+	useItemIdentifier
+} from "@/app/(frontend)/context/items-identifier/itemsIdentifier";
 
 export const UpdateProducts = () => {
 	const { handleMutation, state } = useMutation(updateProduct);
+	const { identifier } = useItemIdentifier();
 
 	return (
 		<FormSchema
 			actionFn={formData => {
-				handleMutation(formData);
+				handleMutation({ formData, productId: identifier });
 			}}
 			state={state}
 			className="border p-3 w-full "

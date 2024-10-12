@@ -4,32 +4,40 @@
 // create context provider
 // create context hook
 
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 interface IItemIdentifier {
 	identifier: number;
-	setIdentifier: (value: number) => void;
+	memorizeIdentifier: (id: number) => void;
 }
 
 const initalState: IItemIdentifier = {
 	identifier: 0,
-	setIdentifier() {}
+	memorizeIdentifier() {}
 };
 const itemIdentifier = createContext(initalState);
 
-export const ItemIdentifierProvider = ({
-	children
-}: {
-	children: React.ReactNode;
-}) => {
-	const [identifier, setIdentifier] = useState<number>(0);
+export const ItemIdentifierProvider = React.memo(
+	({ children }: { children: React.ReactNode }) => {
+		// TODO OPTIMIZE THIS LATER
+		const [identifier, setIdentifier] = useState<number>(0);
 
-	const value = {
-		identifier,
-		setIdentifier
-	};
-	return <itemIdentifier.Provider value={value} />;
-};
+		const memorizeIdentifier = React.useCallback(
+			(id: number) => setIdentifier(id),
+			[identifier]
+		);
+		console.log(identifier);
+		const value = {
+			identifier,
+			memorizeIdentifier
+		};
+		return (
+			<itemIdentifier.Provider value={value}>
+				{children}
+			</itemIdentifier.Provider>
+		);
+	}
+);
 
 export const useItemIdentifier = () => {
 	return useContext(itemIdentifier);

@@ -13,7 +13,6 @@ export const CreateProductFields: IFieldConfig[] = [
 ]
 
 export const UpdateProductFields: IFieldConfig[] = [
-    { name: "id", placeholder: 'product name', type: 'text' },
     { name: "productName", placeholder: 'product name', type: 'text' },
     { name: "productPrice", placeholder: 'product price', type: 'number' },
     { name: "productQuantity", placeholder: 'product price', type: 'number' },

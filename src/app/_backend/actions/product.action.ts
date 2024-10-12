@@ -3,8 +3,12 @@
 import { FormState } from "@/app/(frontend)/design-system/_components/form-components/types";
 import { createProductSchema } from "@/app/lib/zod-schema";
 import productRepository from "../repository/product.repository";
-import { Socket } from 'socket.io'
 
+
+export interface IUpdateProductActions {
+    formData: FormData
+    productId: number
+}
 
 
 export default async function productActions() {
@@ -70,8 +74,9 @@ export async function createProduct(state: FormState, formData: FormData) {
     }
 }
 
-export async function updateProduct(state: FormState, formData: FormData, id?: number) {
+export async function updateProduct(state: FormState, data: IUpdateProductActions, id?: number) {
     const { updateProduct } = await productRepository()
+    const { formData, productId } = data
     try {
         const validatedFields = createProductSchema.safeParse({
             productName: formData.get('productName'),
@@ -81,9 +86,8 @@ export async function updateProduct(state: FormState, formData: FormData, id?: n
             productSku: formData.get('productSku'),
         })
 
-        console.log(validatedFields.data?.productStockStatus)
         if (!validatedFields.error) {
-            await updateProduct(validatedFields.data)
+            await updateProduct({ ...validatedFields.data, id: productId })
             return {
                 message: { successMessage: 'product created succesfully' }
             }

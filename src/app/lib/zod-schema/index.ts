@@ -11,7 +11,7 @@ export const createProductSchema = z.object({
     productQuantity: z.string().min(1, { message: 'productName musty be at least one charcters' }),
     // productDescription: z.string().min(1, { message: 'productName musty be at least one charcters' }),
     productSku: z.string().min(1, { message: 'productName musty be at least one charcters' }),
-    // productStockStatus: z.enum(['out of stock', 'full stock', 'average stock', 'low stock'])
+    productStockStatus: z.enum(['out of stock', 'full stock', 'average stock', 'low stock'])
 })
 
 export const createOrderSchema = z.object({

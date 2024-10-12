@@ -1,19 +1,22 @@
 "use client";
 
+import { ItemIdentifierProvider } from "@/app/(frontend)/context/items-identifier/itemsIdentifier";
 import { SystemIconsCmp } from "@/app/(frontend)/design-system/_components/SystemIcons";
 import { useTable } from "@/app/(frontend)/hooks/state/useTable";
 
-export const TableOptionButton = ({
-	toggleDropDown,
-	id
-}: {
+interface ITableOptionsProps {
 	toggleDropDown: (id: number) => void;
 	id: number;
-}) => {
-	const { identifier } = useTable();
+}
+
+export const TableOptionButton = ({
+	...tableOptionsProps
+}: ITableOptionsProps) => {
+	const { id, toggleDropDown } = tableOptionsProps;
 
 	const handleClick = () => {
 		toggleDropDown(id);
+
 		// replace(`${pathName}&?id=${id
 	};
 	return (

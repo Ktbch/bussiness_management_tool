@@ -8,6 +8,7 @@ import { deleteProduct } from "@/app/_backend/actions/product.action";
 import ProductDetails from "@/app/(frontend)/view/modals/orderModal/productDetails";
 import CreateProducts from "@/app/(frontend)/view/modals/productModal/createProducts";
 import { UpdateProducts } from "@/app/(frontend)/view/modals/productModal/updateProducts";
+import { ItemIdentifierProvider } from "@/app/(frontend)/context/items-identifier/itemsIdentifier";
 
 interface IProps {
 	data: Product[];
@@ -25,13 +26,16 @@ export default function InventoryManagementBody({
 	return (
 		<DashBoardBody resource={resource} jsxElement={CreateProducts}>
 			{data.length !== 0
-				? <RenderTable<Product>
+				?
+				<ItemIdentifierProvider>
+					<RenderTable<Product>
 						data={data}
 						quantity={quantity}
 						actionFunc={deleteProduct}
-						editJsxElement={UpdateProducts()}
+						editJsxElement={<UpdateProducts />}
 						detailsJsxElement={ProductDetails}
-					/>
+						/>
+				</ItemIdentifierProvider>
 				: <NoDataFoundCmp dataName={resource} />}
 		</DashBoardBody>
 	);

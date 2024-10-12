@@ -7,7 +7,6 @@ import { TableOptionButton } from "./table-button";
 import { ITableListConfig } from "./types";
 import { Product, SalesOrder } from "@/app/_backend/database/schema/types";
 import { useTable } from "@/app/(frontend)/hooks/state/useTable";
-import { ItemIdentifierProvider } from "@/app/(frontend)/context/items-identifier/itemsIdentifier";
 
 type TShowModal = {
 	isOn: boolean;
@@ -93,13 +92,12 @@ export default function TableList<T extends Product | SalesOrder>({
 			<td>
 				{/* is this a good design */}
 				<DropDwonCmp
+					tableDataId={tableData.id}
 					button={
-						<ItemIdentifierProvider>
-							<TableOptionButton
-								toggleDropDown={toggleDropDown}
-								id={tableData.id}
-							/>
-						</ItemIdentifierProvider>
+						<TableOptionButton
+							toggleDropDown={toggleDropDown}
+							id={tableData.id}
+						/>
 					}
 					isDropDownActive={isDropDownOpen}
 					options={tableOptions}

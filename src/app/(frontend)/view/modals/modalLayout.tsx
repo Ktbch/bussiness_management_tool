@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { SystemIconsCmp } from "../../design-system/_components/SystemIcons";
+import { useItemIdentifier } from "../../context/items-identifier/itemsIdentifier";
 
 interface IProps {
 	children: React.ReactNode;
@@ -18,6 +19,7 @@ const CancelButton = ({ off }: { off: () => void }) => {
 };
 
 export default function ModalLayout({ children, isOn, off, title }: IProps) {
+	const { identifier } = useItemIdentifier();
 	return (
 		<div
 			className={` ${isOn

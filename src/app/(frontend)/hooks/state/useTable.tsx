@@ -15,7 +15,7 @@ export const useTable = () => {
 		{}
 	);
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
-	const { identifier } = useItemIdentifier();
+	const { identifier, memorizeIdentifier } = useItemIdentifier();
 
 	const toggleDropDown = (id: number) => {
 		setDropDown(prevState => ({ [id]: !prevState[id] }));
@@ -25,7 +25,7 @@ export const useTable = () => {
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			// If the click is outside the dropdown, close it
-			console.log("hello");
+			// console.log("hello");
 			if (
 				dropdownRef.current &&
 				!dropdownRef.current.contains(event.target as Node)
@@ -57,6 +57,7 @@ export const useTable = () => {
 		setSelected,
 		replace,
 		pathName,
-		identifier
+		identifier,
+		memorizeIdentifier
 	};
 };
