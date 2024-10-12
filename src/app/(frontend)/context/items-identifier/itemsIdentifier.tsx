@@ -8,10 +8,12 @@ import { createContext, useContext, useState } from "react";
 
 interface IItemIdentifier {
 	identifier: number;
+	setIdentifier: (value: number) => void;
 }
 
 const initalState: IItemIdentifier = {
-	identifier: 0
+	identifier: 0,
+	setIdentifier() {}
 };
 const itemIdentifier = createContext(initalState);
 
@@ -23,7 +25,8 @@ export const ItemIdentifierProvider = ({
 	const [identifier, setIdentifier] = useState<number>(0);
 
 	const value = {
-		identifier
+		identifier,
+		setIdentifier
 	};
 	return <itemIdentifier.Provider value={value} />;
 };

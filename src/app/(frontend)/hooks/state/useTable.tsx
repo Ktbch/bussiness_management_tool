@@ -1,6 +1,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useToggle } from "./useToggle";
+import { useItemIdentifier } from "../../context/items-identifier/itemsIdentifier";
 
 export const useTable = () => {
 	const { isOn, on, off } = useToggle();
@@ -14,6 +15,7 @@ export const useTable = () => {
 		{}
 	);
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
+	const { identifier } = useItemIdentifier();
 
 	const toggleDropDown = (id: number) => {
 		setDropDown(prevState => ({ [id]: !prevState[id] }));
@@ -54,6 +56,7 @@ export const useTable = () => {
 		isSelected,
 		setSelected,
 		replace,
-		pathName
+		pathName,
+		identifier
 	};
 };

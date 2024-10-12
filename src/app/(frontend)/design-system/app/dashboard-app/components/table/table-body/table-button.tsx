@@ -10,11 +10,10 @@ export const TableOptionButton = ({
 	toggleDropDown: (id: number) => void;
 	id: number;
 }) => {
-	const { replace, pathName } = useTable();
+	const { identifier } = useTable();
 
 	const handleClick = () => {
 		toggleDropDown(id);
-		console.log(pathName);
 		// replace(`${pathName}&?id=${id
 	};
 	return (
