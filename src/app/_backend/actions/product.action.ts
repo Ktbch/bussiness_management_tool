@@ -5,17 +5,18 @@ import { createProductSchema } from "@/app/lib/zod-schema";
 import productRepository from "../repository/product.repository";
 
 
-export interface IUpdateProductActions {
+export interface IProductActions {
     formData: FormData
-    productId: number
+    productId?: number
 }
 
 
 export default async function productActions() {
     return {
-        async createProduct(state: FormState, formData: FormData) {
+        async createProduct(state: FormState, actionData: IProductActions) {
 
             const { createProducts } = await productRepository()
+            const { formData } = actionData
             // const server = new Socket()
             try {
                 const validatedFields = createProductSchema.safeParse({
@@ -51,8 +52,11 @@ export default async function productActions() {
 
 
 
-export async function createProduct(state: FormState, formData: FormData) {
+export async function createProduct(state: FormState, actionData: IProductActions) {
     const { createProducts } = await productRepository()
+    const { formData } = actionData
+    console.log(formData)
+
     try {
         const validatedFields = createProductSchema.safeParse({
             productName: formData.get('productName'),
@@ -60,6 +64,8 @@ export async function createProduct(state: FormState, formData: FormData) {
             productQuantity: formData.get('productQuantity'),
             productSku: formData.get('productSku'),
         })
+
+        console.log(validatedFields.error)
         if (!validatedFields.error) {
             const result = await createProducts(validatedFields.data)
             return {
@@ -74,9 +80,10 @@ export async function createProduct(state: FormState, formData: FormData) {
     }
 }
 
-export async function updateProduct(state: FormState, data: IUpdateProductActions, id?: number) {
+export async function updateProduct(state: FormState, actionData: IProductActions, id?: number) {
     const { updateProduct } = await productRepository()
-    const { formData, productId } = data
+    const { formData, productId } = actionData
+    console.log(formData)
     try {
         const validatedFields = createProductSchema.safeParse({
             productName: formData.get('productName'),
@@ -86,8 +93,10 @@ export async function updateProduct(state: FormState, data: IUpdateProductAction
             productSku: formData.get('productSku'),
         })
 
+        console.log(validatedFields.error)
+
         if (!validatedFields.error) {
-            await updateProduct({ ...validatedFields.data, id: productId })
+            await updateProduct({ ...validatedFields.data, productStockStatus: validatedFields.data.productStockStatus!, id: productId! })
             return {
                 message: { successMessage: 'product created succesfully' }
             }

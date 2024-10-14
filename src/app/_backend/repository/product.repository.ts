@@ -91,6 +91,7 @@ export default async function productRepository() {
             }
 
         },
+        //  TODO WORK ON THE UPDATE
         async updateProduct(product: Product) {
             try {
                 const updatedProduct = await db.update(productTable).set({ ...product, productStockStatus: toggleStatus(parseInt(product.productQuantity), lowStockCount, highStockCount) }).where(eq(productTable.id, product.id)).returning()

@@ -11,7 +11,7 @@ export default function CreateProducts({ off }: { off: () => void }) {
 	return (
 		<FormSchema
 			actionFn={formData => {
-				handleMutation(formData);
+				handleMutation({ formData });
 			}}
 			state={state}
 			className="border p-3 w-full "
