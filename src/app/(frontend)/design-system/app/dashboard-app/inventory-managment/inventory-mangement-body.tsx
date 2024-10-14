@@ -32,11 +32,11 @@ export default function InventoryManagementBody({
 					<RenderTable<Product>
 						data={data}
 						quantity={quantity}
-						actionFunc={DeleteModal()}
+						actionFunc={<DeleteModal />}
 						editJsxElement={<UpdateProducts />}
 						detailsJsxElement={ProductDetails}
 						/>
-				</ItemIdentifierProvider>
+					</ItemIdentifierProvider>
 				: <NoDataFoundCmp dataName={resource} />}
 		</DashBoardBody>
 	);

@@ -5,21 +5,19 @@ import { useTable } from "../../hooks/state/useTable";
 
 interface IInterceptorMessageConfig {
 	continueFunc: () => void;
-	off: () => void;
 	message?: string;
 }
 
 export const InterceptorMessage = ({
-	off,
 	continueFunc,
 	message
 }: IInterceptorMessageConfig) => {
-	const { refresh } = useTable();
+	const { refresh, off } = useTable();
 
 	const handleClick = async (response: "yes" | "no") => {
 		if (response == "yes") {
 			continueFunc();
-			// off();
+			off();
 			refresh();
 			return;
 		}

@@ -18,8 +18,7 @@ const CancelButton = ({ off }: { off: () => void }) => {
 	);
 };
 
-export default function ModalLayout({ children, isOn, off, title }: IProps) {
-	const { identifier } = useItemIdentifier();
+const ModalLayout = React.memo(({ children, isOn, off, title }: IProps) => {
 	return (
 		<div
 			className={` ${isOn
@@ -40,4 +39,6 @@ export default function ModalLayout({ children, isOn, off, title }: IProps) {
 			</div>
 		</div>
 	);
-}
+});
+
+export default ModalLayout;

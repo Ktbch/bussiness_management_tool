@@ -1,13 +1,15 @@
+"use client";
+
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useToggle } from "./useToggle";
 import { useItemIdentifier } from "../../context/items-identifier/itemsIdentifier";
+import { useModalActionContext } from "../../context/modal/modal-context";
 
 export const useTable = () => {
-	const { isOn, on, off } = useToggle();
-	const [modalCmp, setModalCmp] = useState<React.JSX.Element>(() =>
-		<div>hello</div>
-	);
+	const { isOn, on, off } = useModalActionContext();
+	const [modalCmp, setModalCmp] = useState<React.JSX.Element>();
+
 	const [isSelected, setSelected] = useState(false);
 	const { refresh, replace } = useRouter();
 	const pathName = usePathname();

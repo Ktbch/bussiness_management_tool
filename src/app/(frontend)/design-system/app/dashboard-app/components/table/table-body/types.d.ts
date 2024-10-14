@@ -7,6 +7,7 @@ interface ITableListConfig<T> {
     updateCmp: React.JSX.Element
     actionFunc: React.JSX.Element
     toggleDropDown: (id: number) => void
+
 }
 
 interface IProps {
