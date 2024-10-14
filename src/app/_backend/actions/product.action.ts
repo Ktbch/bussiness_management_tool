@@ -95,10 +95,11 @@ export async function updateProduct(state: FormState, actionData: IProductAction
         })
 
 
+
         if (!validatedFields.error) {
             await updateProduct({ ...validatedFields.data, productStockStatus: validatedFields.data.productStockStatus!, id: productId! })
             return {
-                message: { successMessage: 'product created succesfully' }
+                message: { successMessage: 'product updated' }
             }
         }
         return {

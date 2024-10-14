@@ -5,13 +5,12 @@ import FormSchema from "@/app/(frontend)/design-system/_components/form-componen
 import { UpdateProductFields } from "@/app/(frontend)/constants/form-constants";
 import { useMutation } from "@/app/(frontend)/hooks/useMutation";
 import { OPTIONS_CONSTANTS_OBJECT } from "@/app/(frontend)/constants";
-import {
-	ItemIdentifierProvider,
-	useItemIdentifier
-} from "@/app/(frontend)/context/items-identifier/itemsIdentifier";
+import { useItemIdentifier } from "@/app/(frontend)/context/items-identifier/itemsIdentifier";
+import { useModalActionContext } from "@/app/(frontend)/context/modal/modal-context";
 
 export const UpdateProducts = () => {
-	const { handleMutation, state } = useMutation(updateProduct);
+	const { off } = useModalActionContext();
+	const { handleMutation, state } = useMutation(updateProduct, off);
 	const { identifier } = useItemIdentifier();
 
 	return (
