@@ -27,14 +27,10 @@ export default async function createOrderAction(state: FormState, formData: Form
             const result = await createOrder({
                 ...validatedFields.data, status: validatedFields.data.status
             })
-            return {
-                message: { successMessage: result }
-            }
+            return responseMessageTool(result, 'sucess')
         }
 
-        return {
-            message: { errMessage: validatedFields.error.message }
-        }
+        return responseMessageTool(validatedFields.error.message, 'error')
     } catch (error) {
         throw error
     }

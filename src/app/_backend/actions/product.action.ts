@@ -4,6 +4,7 @@ import { FormState } from "@/app/(frontend)/design-system/_components/form-compo
 import { createProductSchema } from "@/app/lib/zod-schema";
 import productRepository from "../repository/product.repository";
 import { IActionsConfig } from ".";
+import { responseMessageTool } from "./utils";
 
 
 
@@ -63,12 +64,9 @@ export async function createProduct(state: FormState, actionData: IActionsConfig
             productSku: formData.get('productSku'),
         })
 
-        console.log(validatedFields.error)
         if (!validatedFields.error) {
             const result = await createProducts(validatedFields.data)
-            return {
-                message: { successMessage: result }
-            }
+            return responseMessageTool(result, 'sucess')
         }
         return {
             errors: validatedFields.error.flatten().fieldErrors
@@ -95,9 +93,7 @@ export async function updateProduct(state: FormState, actionData: IActionsConfig
 
         if (!validatedFields.error) {
             await updateProduct({ ...validatedFields.data, productStockStatus: validatedFields.data.productStockStatus!, id: productId! })
-            return {
-                message: { successMessage: 'product updated' }
-            }
+            return responseMessageTool('product updated succesfully', "sucess")
         }
         return {
             errors: validatedFields.error.flatten().fieldErrors
