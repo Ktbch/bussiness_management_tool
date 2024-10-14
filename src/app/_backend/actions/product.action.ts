@@ -3,12 +3,9 @@
 import { FormState } from "@/app/(frontend)/design-system/_components/form-components/types";
 import { createProductSchema } from "@/app/lib/zod-schema";
 import productRepository from "../repository/product.repository";
+import { IActionsConfig } from ".";
 
 
-export interface IProductActions {
-    formData?: FormData
-    productId?: number
-}
 
 
 // // export default async function productActions() {
@@ -52,7 +49,7 @@ export interface IProductActions {
 
 
 
-export async function createProduct(state: FormState, actionData: IProductActions) {
+export async function createProduct(state: FormState, actionData: IActionsConfig) {
     const { createProducts } = await productRepository()
     const { formData } = actionData
     console.log(formData)
@@ -81,7 +78,7 @@ export async function createProduct(state: FormState, actionData: IProductAction
     }
 }
 
-export async function updateProduct(state: FormState, actionData: IProductActions, id?: number) {
+export async function updateProduct(state: FormState, actionData: IActionsConfig, id?: number) {
     const { updateProduct } = await productRepository()
     const { formData, productId } = actionData
     try {
@@ -110,7 +107,7 @@ export async function updateProduct(state: FormState, actionData: IProductAction
     }
 }
 
-export async function deleteProduct(state: FormState, actionData: IProductActions) {
+export async function deleteProduct(state: FormState, actionData: IActionsConfig) {
     try {
         const { deleteProduct } = await productRepository()
         const { productId } = actionData

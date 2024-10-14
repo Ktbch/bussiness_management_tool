@@ -53,7 +53,7 @@ export default function salesOrderRepository() {
                 const limit = 4
                 const offSet = page * limit
 
-                const orders = await db.select().from(orderTable).limit(limit).offset(offSet)
+                const orders = (await db.select().from(orderTable).limit(limit).offset(offSet)).toSorted((a, b) => a.id - b.id)
                 return orders
 
             } catch (error) {
@@ -61,6 +61,14 @@ export default function salesOrderRepository() {
             }
         },
 
+
+        async deleteOrders(id: number) {
+            const orderFound = await db.select().from(orderTable).where(eq(orderTable.id, id))
+            if (!orderFound) return 'order does not exist'
+
+            const deletedOrder = await db.delete(orderTable).where(eq(orderTable.id, orderFound[0].id)).returning()
+            return deletedOrder
+        }
 
         // async updateOrder(salesOrder: NewSalesOrder) {
         //     try {

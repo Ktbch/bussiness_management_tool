@@ -6,12 +6,12 @@ import { useToastContext } from "../context/toast/toast.context";
 import { FormState } from "../design-system/_components/form-components/types";
 import { useEffect } from "react";
 import { manageState } from "../utils/manage-state-utils";
-import {  IProductActions } from "@/app/_backend/actions/product.action";
+import { IActionsConfig } from "@/app/_backend/actions";
 
 
 // this is a design
 
-export type MutateFunc = (state: FormState, formData:IProductActions) => Promise<FormState>;
+export type MutateFunc = (state: FormState, formData:IActionsConfig) => Promise<FormState>;
 type Off = ()=>void
 
 export const useMutation = (mutateFunc: MutateFunc, off?:Off) => {
@@ -19,7 +19,7 @@ export const useMutation = (mutateFunc: MutateFunc, off?:Off) => {
 	const { refresh } = useRouter();
 	const toast = useToastContext();
 
-    const handleMutation = (formData: IProductActions) => action(formData);
+    const handleMutation = (formData: IActionsConfig) => action(formData);
     
     useEffect(() => {
 		const { checkSuccessOfAction, restoreActionState } = manageState(state)

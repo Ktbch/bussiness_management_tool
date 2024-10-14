@@ -4,6 +4,10 @@
 import { FormState } from '@/app/(frontend)/design-system/_components/form-components/types'
 import salesOrderRepository from '../repository/sales-order.repository'
 import { createOrderSchema } from '@/app/lib/zod-schema'
+import { IActionsConfig } from '.'
+import { responseMessageTool } from './utils'
+
+
 
 export default async function createOrderAction(state: FormState, formData: FormData) {
 
@@ -33,5 +37,22 @@ export default async function createOrderAction(state: FormState, formData: Form
         }
     } catch (error) {
         throw error
+    }
+}
+
+
+export async function deleteOrder(state: FormState, actionData: IActionsConfig) {
+
+    try {
+        const { deleteOrders } = salesOrderRepository()
+        const { productId } = actionData
+        if (!productId) return responseMessageTool('identifier expected', 'error')
+
+        const result = await deleteOrders(productId)
+
+        return responseMessageTool('order deleted sucessfully', 'sucess')
+
+    } catch (error) {
+
     }
 }
