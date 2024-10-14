@@ -37,18 +37,26 @@ export default async function createOrderAction(state: FormState, formData: Form
 }
 
 
+export async function updateOrderAction(state: FormState, actionData: IActionsConfig) {
+    try {
+        const { formData, productId } = actionData
+    } catch (error) {
+        throw error
+    }
+}
+
 export async function deleteOrder(state: FormState, actionData: IActionsConfig) {
 
     try {
-        const { deleteOrders } = salesOrderRepository()
+        const { deleteOrdersRepository } = salesOrderRepository()
         const { productId } = actionData
         if (!productId) return responseMessageTool('identifier expected', 'error')
 
-        const result = await deleteOrders(productId)
+        const result = await deleteOrdersRepository(productId)
 
         return responseMessageTool('order deleted sucessfully', 'sucess')
 
     } catch (error) {
-
+        throw error
     }
 }

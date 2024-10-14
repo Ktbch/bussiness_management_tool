@@ -21,5 +21,4 @@ export const createOrderSchema = z.object({
     price: z.string().min(1, { message: 'price must be at least one chracters' }),
     discount: z.string().optional(),
     status: z.enum(['paid', 'unpaid']).optional().nullable()
-
 })
