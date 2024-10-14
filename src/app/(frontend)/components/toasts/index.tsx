@@ -9,10 +9,12 @@ export const ToastCmp = ({ toastMessage }: IProps) => {
 	return (
 		<div
 			className={`fixed ${toastMessage
-				? "top-5"
-				: "-top-20"} border p-3 border-sucessColor bg-neturalColor text-sucessColor font-bold rounded-md  transition-all  left-[45%]`}>
-			<div className=" p-3 capitalize text-center text-sm">
-				{toastMessage}
+				? " overflow-y-auto overflow-x-hidden  top-0 right-0 left-0  justify-center w-full md:inset-0 h-auto max-h-full  fixed inset-0 bg-black bg-opacity-50 flex items-center  z-50  transition-all"
+				: ""}  left-[45%]`}>
+			<div className="border p-3 border-sucessColor bg-neturalColor text-sucessColor font-bold rounded-md">
+				<div className=" p-3 capitalize text-center text-sm">
+					{toastMessage}
+				</div>
 			</div>
 		</div>
 	);
