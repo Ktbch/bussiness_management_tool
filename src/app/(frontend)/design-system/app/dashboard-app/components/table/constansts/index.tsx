@@ -8,9 +8,10 @@ export interface IOptionsFuncConfig<T extends Product | SalesOrder> {
 	setModalCmp: (value: React.JSX.Element) => void;
 	editModalCmp: React.JSX.Element;
 	off: () => void;
-	actionFunc: (id: number) => Promise<string>;
+	actionFunc: React.JSX.Element;
 	id: number;
 	refresh: () => void;
+
 	detailsModalCmp: ({ data }: { data: T }) => React.JSX.Element;
 	data: T;
 }
@@ -47,15 +48,7 @@ export default class GenerateOptionsObj<T extends SalesOrder | Product> {
 		} = this.optionsParams;
 
 		on();
-		setModalCmp(
-			InterceptorMessage({
-				off,
-				continueFunc: actionFunc,
-				message: `Are you sure you want To delete this product`,
-				id: id,
-				refresh
-			})
-		);
+		setModalCmp(actionFunc);
 	};
 
 	openDetailsModal = () => {

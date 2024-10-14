@@ -215,8 +215,17 @@ This breakdown helps ensure each color is used purposefully, contributing to a c
 
 ### Things that are not working in the app
 [] We can't delete successfully
+[] i want to fix the re design the delete feature and the interceptor feature
 [] We can't edit successfully
 [] We can't  genreate recipt yet
 [] we can't mark as paid yet 
-
+[] i want to caculate the total revenue made of each product
+[] i want to calculate the total worth of the products avaliable
+[] i want to creat total Amont of product sold
+[] best selling products
+[] least selling products 
+[] most expensive products
+[] least ecpensive products
+[] a to calculate the status of the product according to the records of sold, and total money spent
+[] create table that manges the total products sold that are paid the one that are unpaid then calcuate the total profit
 ### create a way where user can specify when he has a low stock of a particular product

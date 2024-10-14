@@ -9,6 +9,7 @@ import ProductDetails from "@/app/(frontend)/view/modals/orderModal/productDetai
 import CreateProducts from "@/app/(frontend)/view/modals/productModal/createProducts";
 import { UpdateProducts } from "@/app/(frontend)/view/modals/productModal/updateProducts";
 import { ItemIdentifierProvider } from "@/app/(frontend)/context/items-identifier/itemsIdentifier";
+import DeleteModal from "@/app/(frontend)/view/modals/deleteModal";
 
 interface IProps {
 	data: Product[];
@@ -31,7 +32,7 @@ export default function InventoryManagementBody({
 					<RenderTable<Product>
 						data={data}
 						quantity={quantity}
-						actionFunc={deleteProduct}
+						actionFunc={DeleteModal()}
 						editJsxElement={<UpdateProducts />}
 						detailsJsxElement={ProductDetails}
 						/>

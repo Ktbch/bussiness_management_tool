@@ -30,6 +30,7 @@ const DropDownItems = ({
 	const handleClick = () => {
 		memorizeIdentifier(tableDataId);
 		options.func();
+		console.log("hello");
 	};
 	return (
 		<button

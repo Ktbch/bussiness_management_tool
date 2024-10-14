@@ -1,24 +1,25 @@
 // TODO MORE WORK TO MAKE THIS REUSEABLE let the custom interceptor take unique components and unique functions
+"use client";
+
+import { useTable } from "../../hooks/state/useTable";
 
 interface IInterceptorMessageConfig {
-	continueFunc: (id: number) => Promise<string>;
+	continueFunc: () => void;
 	off: () => void;
-	id: number;
-	refresh: () => void;
 	message?: string;
 }
 
 export const InterceptorMessage = ({
 	off,
 	continueFunc,
-	id,
-	refresh,
 	message
 }: IInterceptorMessageConfig) => {
+	const { refresh } = useTable();
+
 	const handleClick = async (response: "yes" | "no") => {
 		if (response == "yes") {
-			await continueFunc(id);
-			off();
+			continueFunc();
+			// off();
 			refresh();
 			return;
 		}

@@ -6,49 +6,49 @@ import productRepository from "../repository/product.repository";
 
 
 export interface IProductActions {
-    formData: FormData
+    formData?: FormData
     productId?: number
 }
 
 
-export default async function productActions() {
-    return {
-        async createProduct(state: FormState, actionData: IProductActions) {
+// // export default async function productActions() {
+// return {
+//     async createProduct(state: FormState, actionData: IProductActions) {
 
-            const { createProducts } = await productRepository()
-            const { formData } = actionData
-            // const server = new Socket()
-            try {
-                const validatedFields = createProductSchema.safeParse({
-                    productName: formData.get('productName'),
-                    productPrice: formData.get('productPrice'),
-                    productQuantity: formData.get('productQuantity'),
-                    productDescription: formData.get('productDescription'),
-                    productSku: formData.get('productSku'),
-                })
-                if (!validatedFields.error) {
-                    await createProducts(validatedFields.data)
+//         const { createProducts } = await productRepository()
+//         const { formData } = actionData
+//         // const server = new Socket()
+//         try {
+//             const validatedFields = createProductSchema.safeParse({
+//                 productName: formData.get('productName'),
+//                 productPrice: formData.get('productPrice'),
+//                 productQuantity: formData.get('productQuantity'),
+//                 productDescription: formData.get('productDescription'),
+//                 productSku: formData.get('productSku'),
+//             })
+//             if (!validatedFields.error) {
+//                 await createProducts(validatedFields.data)
 
-                    return {
-                        message: { successMessage: 'product created succesfully' }
-                    }
-                }
-                return {
-                    errors: validatedFields.error.flatten().fieldErrors
-                }
-            } catch (error) {
-                throw error
-            }
-        },
+//                 return {
+//                     message: { successMessage: 'product created succesfully' }
+//                 }
+//             }
+//             return {
+//                 errors: validatedFields.error.flatten().fieldErrors
+//             }
+//         } catch (error) {
+//             throw error
+//         }
+//     },
 
-        async deleteProduct(id: number) {
-            const { deleteProduct } = await productRepository()
-            if (!id) return 'identifier is needed'
-            await deleteProduct(id)
-            return 'succesfully deleted'
-        }
-    }
-}
+//     async deleteProduct(id: number) {
+//         const { deleteProduct } = await productRepository()
+//         if (!id) return 'identifier is needed'
+//         await deleteProduct(id)
+//         return 'succesfully deleted'
+//     }
+// }
+// // }
 
 
 
@@ -58,6 +58,7 @@ export async function createProduct(state: FormState, actionData: IProductAction
     console.log(formData)
 
     try {
+        if (!formData) return
         const validatedFields = createProductSchema.safeParse({
             productName: formData.get('productName'),
             productPrice: formData.get('productPrice'),
@@ -83,8 +84,8 @@ export async function createProduct(state: FormState, actionData: IProductAction
 export async function updateProduct(state: FormState, actionData: IProductActions, id?: number) {
     const { updateProduct } = await productRepository()
     const { formData, productId } = actionData
-    console.log(formData)
     try {
+        if (!formData) return
         const validatedFields = createProductSchema.safeParse({
             productName: formData.get('productName'),
             productPrice: formData.get('productPrice'),
@@ -93,7 +94,6 @@ export async function updateProduct(state: FormState, actionData: IProductAction
             productSku: formData.get('productSku'),
         })
 
-        console.log(validatedFields.error)
 
         if (!validatedFields.error) {
             await updateProduct({ ...validatedFields.data, productStockStatus: validatedFields.data.productStockStatus!, id: productId! })
@@ -109,12 +109,13 @@ export async function updateProduct(state: FormState, actionData: IProductAction
     }
 }
 
-export async function deleteProduct(id: number) {
+export async function deleteProduct(state: FormState, actionData: IProductActions) {
     try {
         const { deleteProduct } = await productRepository()
-        if (!id) return 'an identifier is needed'
-        await deleteProduct(id)
-        return 'product sucessfully deleted'
+        const { productId } = actionData
+        if (!productId) return { message: { errMessage: 'an identifier is needed' } }
+        await deleteProduct(productId)
+        return { message: { successMessage: 'product sucessfully deleted' } }
     } catch (error) {
         throw error
     }

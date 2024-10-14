@@ -59,7 +59,7 @@ export default function TableList<T extends Product | SalesOrder>({
 	const tableOptions = generateTableOptionsObj.generateTableOptionsObj();
 
 	// TODO DELETE ALL
-
+	// TODO REMOVE THIS FROM HERE
 	const stockStatusColorPicker = (data: string | number | null) => {
 		switch (data) {
 			case "low stock":
