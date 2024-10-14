@@ -214,9 +214,12 @@ Here’s a more detailed breakdown of how each of the colors in the suggested th
 This breakdown helps ensure each color is used purposefully, contributing to a cohesive, professional, and user-friendly app design.
 
 ### Things that are not working in the app
-[] We can't delete successfully
-[] i want to fix the re design the delete feature and the interceptor feature
-[] We can't edit successfully
+[x] We can't delete successfully
+[x] i want to fix the re design the delete feature and the interceptor feature
+[x] We can't edit successfully
+[] we can't create an order yet..
+[] we can't update order 
+[] we can't delete order yer
 [] We can't  genreate recipt yet
 [] we can't mark as paid yet 
 [] i want to caculate the total revenue made of each product

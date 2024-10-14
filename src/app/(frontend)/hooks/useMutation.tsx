@@ -11,7 +11,7 @@ import {  IProductActions } from "@/app/_backend/actions/product.action";
 
 // this is a design
 
-type MutateFunc = (state: FormState, formData:IProductActions) => Promise<FormState>;
+export type MutateFunc = (state: FormState, formData:IProductActions) => Promise<FormState>;
 type Off = ()=>void
 
 export const useMutation = (mutateFunc: MutateFunc, off?:Off) => {
