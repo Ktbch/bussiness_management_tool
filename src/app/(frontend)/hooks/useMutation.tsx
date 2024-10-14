@@ -22,7 +22,10 @@ export const useMutation = (mutateFunc: MutateFunc, off?:Off) => {
     const handleMutation = (formData: IProductActions) => action(formData);
     
     useEffect(() => {
-		const {checkSuccessOfAction,restoreActionState}  = manageState(state)
+		const { checkSuccessOfAction, restoreActionState } = manageState(state)
+		
+		console.log(checkSuccessOfAction)
+		
 		if (checkSuccessOfAction()) {
 			off && off()
 			refresh()

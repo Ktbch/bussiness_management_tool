@@ -9,13 +9,11 @@ import React, { createContext, useContext, useState } from "react";
 interface IItemIdentifier {
 	identifier: number;
 	memorizeIdentifier: (id: number) => void;
-	memoIdentifier: number;
 }
 
 const initalState: IItemIdentifier = {
 	identifier: 0,
-	memorizeIdentifier() {},
-	memoIdentifier: 0
+	memorizeIdentifier() {}
 };
 const itemIdentifier = createContext(initalState);
 
@@ -31,12 +29,9 @@ export const ItemIdentifierProvider = React.memo(
 
 		localStorage.setItem("id", JSON.stringify(identifier));
 
-		const memoIdentifier = React.useMemo(() => identifier, [setIdentifier]);
-		console.log(identifier);
 		const value = {
 			identifier,
-			memorizeIdentifier,
-			memoIdentifier
+			memorizeIdentifier
 		};
 		return (
 			<itemIdentifier.Provider value={value}>

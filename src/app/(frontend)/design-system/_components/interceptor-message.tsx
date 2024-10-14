@@ -12,13 +12,11 @@ export const InterceptorMessage = ({
 	continueFunc,
 	message
 }: IInterceptorMessageConfig) => {
-	const { refresh, off } = useTable();
+	const { off } = useTable();
 
 	const handleClick = async (response: "yes" | "no") => {
 		if (response == "yes") {
 			continueFunc();
-			off();
-			refresh();
 			return;
 		}
 		off();

@@ -113,11 +113,11 @@ export async function deleteProduct(state: FormState, actionData: IProductAction
     try {
         const { deleteProduct } = await productRepository()
         const { productId } = actionData
-        console.log(productId)
+
         if (!productId) return { message: { errMessage: 'an identifier is needed' } }
-        await deleteProduct(productId)
+        const productDeleted = await deleteProduct(productId)
         return {
-            message: { successMessage: 'product created succesfully' }
+            message: { successMessage: `${productDeleted.productName}  deleted` }
         }
     } catch (error) {
         throw error

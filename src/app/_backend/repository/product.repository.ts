@@ -103,7 +103,7 @@ export default async function productRepository() {
         async deleteProduct(id: number) {
             try {
                 const deletedProduct = await db.delete(productTable).where(eq(productTable.id, id)).returning()
-                return deletedProduct
+                return deletedProduct[0]
             } catch (error) {
                 throw error
             }
