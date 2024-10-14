@@ -1,7 +1,7 @@
 import { db } from "../database"
 import { productTable } from "../database/schema/product.schema"
 import { orderTable } from "../database/schema/sales-order.schema"
-import { NewSalesOrder, Product } from "../database/schema/types"
+import { NewSalesOrder, Product, SalesOrder } from "../database/schema/types"
 import { eq } from "drizzle-orm"
 
 
@@ -68,16 +68,19 @@ export default function salesOrderRepository() {
 
             const deletedOrder = await db.delete(orderTable).where(eq(orderTable.id, orderFound[0].id)).returning()
             return deletedOrder
-        }
+        },
 
-        // async updateOrder(salesOrder: NewSalesOrder) {
-        //     try {
-        //         const order = await db.insert(orderTable).values(newSalesOrder).returning()
-        //         return order[0] || null
-        //     } catch (error) {
-        //         throw error
-        //     }
-        // },
+        async updateOrder(salesOrder: SalesOrder) {
+            try {
+                //  TODO IMPROVE THIS LOGIC
+                const orderFound = await db.select().from(orderTable).where(eq(orderTable.id, salesOrder.id))
+                if (!orderFound[0]) return 'order does not exist'
+                const updatedOrder = await db.update(orderTable).set(salesOrder).where(eq(orderTable.id, orderFound[0].id))
+                return 'updated succesfully'
+            } catch (error) {
+                throw error
+            }
+        },
         // async createOrder(newSalesOrder: NewSalesOrder) {
         //     try {
         //         const order = await db.insert(orderTable).values(newSalesOrder).returning()
