@@ -62,7 +62,7 @@ export default function salesOrderRepository() {
         },
 
 
-        async deleteOrders(id: number) {
+        async deleteOrdersRepository(id: number) {
             const orderFound = await db.select().from(orderTable).where(eq(orderTable.id, id))
             if (!orderFound) return 'order does not exist'
 
@@ -70,7 +70,7 @@ export default function salesOrderRepository() {
             return deletedOrder
         },
 
-        async updateOrder(salesOrder: SalesOrder) {
+        async updateOrderRepository(salesOrder: SalesOrder) {
             try {
                 //  TODO IMPROVE THIS LOGIC
                 const orderFound = await db.select().from(orderTable).where(eq(orderTable.id, salesOrder.id))
