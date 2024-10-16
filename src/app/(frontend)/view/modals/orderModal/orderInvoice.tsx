@@ -3,16 +3,19 @@
 import DelayRender from "@/app/(frontend)/components/delay-rendering";
 import { useItemIdentifier } from "@/app/(frontend)/context/items-identifier/itemsIdentifier";
 import useGetData from "@/app/(frontend)/hooks/data_fetching/useGetData";
+import { useMutation } from "@/app/(frontend)/hooks/useMutation";
+import { updateOrderStatusAction } from "@/app/_backend/actions/create-order.action";
 import { getOneOrder } from "@/app/_backend/data/order/order.data";
 import { SalesOrder } from "@/app/_backend/database/schema/types";
 import { useState } from "react";
 
 export default function OrderInvoice() {
-	const [status, setStatus] = useState(true);
 	const { identifier } = useItemIdentifier();
+	const [paid, setPaid] = useState<"paid" | null>(null);
 
 	// Todo male this more effective
 	const orderData = useGetData(getOneOrder, identifier);
+	const { handleMutation } = useMutation(updateOrderStatusAction);
 
 	if (!orderData) {
 		return (
@@ -21,6 +24,14 @@ export default function OrderInvoice() {
 			</DelayRender>
 		);
 	}
+
+	const handleClcik = () => {
+		if (orderData.status === "unpaid") {
+			setPaid("paid");
+			handleMutation({ productId: identifier });
+		}
+		return;
+	};
 
 	return (
 		<div className="flex flex-col items-start gap-10">
@@ -41,10 +52,13 @@ export default function OrderInvoice() {
 					</p>
 				</div>
 				<button
-					// onClick={}
-					className={`border p-3 ${orderData.status === "paid" &&
-						"bg-secondaryColor"} bg-primaryColor text-neturalColor hover:bg-secondaryColor`}>
-					{orderData.status === "paid" ? "View Recipt" : "Mark as Paid"}
+					onClick={handleClcik}
+					className={`border p-3 ${!paid
+						? orderData.status === "paid" && "bg-secondaryColor"
+						: "bg-secondaryColor"} bg-primaryColor text-neturalColor hover:bg-secondaryColor`}>
+					{!paid
+						? orderData.status === "paid" ? "View Recipt" : "Mark as Paid"
+						: "View Recipt"}
 				</button>
 			</div>
 		</div>

@@ -217,9 +217,9 @@ This breakdown helps ensure each color is used purposefully, contributing to a c
 [x] We can't delete successfully
 [x] i want to fix the re design the delete feature and the interceptor feature
 [x] We can't edit successfully
-[] we can't create an order yet..
-[] we can't update order 
-[] we can't delete order yer
+[x] we can't create an order yet..
+[x] we can't update order 
+[x] we can't delete order yer
 [] We can't  genreate recipt yet
 [] we can't mark as paid yet 
 [] i want to caculate the total revenue made of each product

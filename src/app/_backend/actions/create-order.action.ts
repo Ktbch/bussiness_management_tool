@@ -83,3 +83,16 @@ export async function deleteOrder(state: FormState, actionData: IActionsConfig) 
         throw error
     }
 }
+
+export async function updateOrderStatusAction(state: FormState, actionData: IActionsConfig) {
+    try {
+        const { changeOrderStatus } = salesOrderRepository()
+        const { productId } = actionData
+
+        await changeOrderStatus(productId!)
+
+        return responseMessageTool('order updated customer paid', 'sucess')
+    } catch (error) {
+        throw error
+    }
+}

@@ -36,7 +36,7 @@ export default function salesOrderRepository() {
             try {
                 const productExist = await db.select().from(productTable).where(eq(productTable.productName, newSalesOrder.productSold))
 
-                console.log(productExist[0])
+                // TODO REMOVE THIS FROM HERE
                 if (!productExist[0]) return 'product does not exist'
                 if (productExist[0].productQuantity < newSalesOrder.quantitySold) return 'you can sell more than quantity avaliable'
 
@@ -44,7 +44,6 @@ export default function salesOrderRepository() {
 
                 const newQuantity = parseInt(productExist[0].productQuantity) - parseInt(order[0].quantitySold)
                 const databaseFreindlyQuantity = JSON.stringify(newQuantity)
-                console.log(databaseFreindlyQuantity)
 
                 await db.update(productTable).set({ ...productExist[0], productQuantity: databaseFreindlyQuantity }).where(eq(productTable.productName, productExist[0].productName))
 
@@ -70,6 +69,15 @@ export default function salesOrderRepository() {
             }
         },
 
+        async changeOrderStatus(id: number) {
+            try {
+                const orderFound = await db.select().from(orderTable).where(eq(orderTable.id, id))
+                if (!orderFound) return
+                await db.update(orderTable).set({ status: 'paid' }).where(eq(orderTable.id, id))
+            } catch (error) {
+                throw error
+            }
+        },
         async getOrderByID(id: number) {
             try {
                 const orderFound = await db.select().from(orderTable).where(eq(orderTable.id, id))
