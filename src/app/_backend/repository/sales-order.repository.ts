@@ -56,6 +56,7 @@ export default function salesOrderRepository() {
                 throw error
             }
         },
+
         async getAllOrders(page: number = 0) {
             try {
                 const limit = 4
@@ -69,7 +70,14 @@ export default function salesOrderRepository() {
             }
         },
 
-
+        async getOrderByID(id: number) {
+            try {
+                const orderFound = await db.select().from(orderTable).where(eq(orderTable.id, id))
+                return orderFound[0]
+            } catch (error) {
+                throw error
+            }
+        },
         async deleteOrdersRepository(id: number) {
             const orderFound = await db.select().from(orderTable).where(eq(orderTable.id, id))
             if (!orderFound) return 'order does not exist'

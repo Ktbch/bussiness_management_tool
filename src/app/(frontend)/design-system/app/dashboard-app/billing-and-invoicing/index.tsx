@@ -34,7 +34,7 @@ export default function BillingAndInvocingBody({
 					<RenderTable<SalesOrder>
 						data={data}
 						quantity={quantity}
-						detailsJsxElement={OrderInvoice}
+						detailsJsxElement={<OrderInvoice  />}
 						editJsxElement={<UpdateOrder />}
 						actionFunc={<DeleteOrder />}
 					/>
