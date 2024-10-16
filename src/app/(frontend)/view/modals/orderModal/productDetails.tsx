@@ -1,30 +1,35 @@
 "use client";
 
-import { Product } from "@/app/_backend/database/schema/types";
+import DelayRender from "@/app/(frontend)/components/delay-rendering";
+import { useItemIdentifier } from "@/app/(frontend)/context/items-identifier/itemsIdentifier";
+import useGetData from "@/app/(frontend)/hooks/data_fetching/useGetData";
+import { getOneProduct } from "@/app/_backend/data/product/product.data";
 
-interface IProps {
-	data: Product;
-}
+export default function ProductDetails() {
+	const { identifier } = useItemIdentifier();
+	const productData = useGetData(getOneProduct, identifier);
 
-export default function ProductDetails({ data }: IProps) {
+	if (!productData) {
+		return <DelayRender delayWait={5}>Loading..</DelayRender>;
+	}
 	return (
 		<div className=" max--w-7xl m-auto flex flex-col gap-5 mt-10 text-md font-semibold items-start p-5 ">
 			<h1 className="capitalize">
-				{data.productName}
+				{productData.productName}
 			</h1>
 			<div className="text-start  tracking-wide">
-				{data.productStockStatus}
+				{productData.productStockStatus}
 			</div>
 			<div className="flex items-center gap-10">
 				<p>
-					ProductPrice:{data.productPrice}
+					ProductPrice:{productData.productPrice}
 				</p>
 				<p>
-					ProductQuantity:{data.productQuantity}
+					ProductQuantity:{productData.productQuantity}
 				</p>
 			</div>
 			<div className="ml-auto">
-				{data.productSku}
+				{productData.productSku}
 			</div>
 		</div>
 	);

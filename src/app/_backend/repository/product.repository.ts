@@ -91,6 +91,10 @@ export default async function productRepository() {
             }
 
         },
+        async getProductById(id: number) {
+            const product = await db.select().from(productTable).where(eq(productTable.id, id))
+            return product[0]
+        },
         //  TODO WORK ON THE UPDATE
         async updateProduct(product: Product) {
             try {

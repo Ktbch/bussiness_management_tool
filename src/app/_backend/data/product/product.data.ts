@@ -14,3 +14,15 @@ export default async function productData(page: string) {
         throw error
     }
 }
+
+
+export async function getOneProduct(id: number) {
+    const { getProductById } = await productRepository()
+
+    try {
+        const product = await getProductById(id)
+        return product
+    } catch (error) {
+        throw error
+    }
+}

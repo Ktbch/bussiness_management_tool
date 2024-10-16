@@ -14,38 +14,37 @@ export default function OrderInvoice() {
 	// Todo male this more effective
 	const orderData = useGetData(getOneOrder, identifier);
 
-
 	if (!orderData) {
 		return (
 			<DelayRender delayWait={10}>
 				<p>Loading...</p>
 			</DelayRender>
-		)
-  }
+		);
+	}
 
 	return (
 		<div className="flex flex-col items-start gap-10">
 			<h1>Order Invoice Summary</h1>
 			<div className="flex flex-col items-start gap-5">
 				<h1>
-					ProductSold: {orderData?.productSold}
+					ProductSold: {orderData.productSold}
 				</h1>
 				<h1>
-					QuantitySold: {orderData?.quantitySold}
+					QuantitySold: {orderData.quantitySold}
 				</h1>
 				<div className="flex items-center gap-5">
 					<p>
-						Price: N{orderData?.price}
+						Price: N{orderData.price}
 					</p>
 					<p>
-						Discount: {orderData?.discount}
+						Discount: {orderData.discount}
 					</p>
 				</div>
 				<button
 					// onClick={}
-					className={`border p-3 ${orderData?.status === "paid" &&
+					className={`border p-3 ${orderData.status === "paid" &&
 						"bg-secondaryColor"} bg-primaryColor text-neturalColor hover:bg-secondaryColor`}>
-					{orderData?.status === "paid" ? "View Recipt" : "Mark as Paid"}
+					{orderData.status === "paid" ? "View Recipt" : "Mark as Paid"}
 				</button>
 			</div>
 		</div>

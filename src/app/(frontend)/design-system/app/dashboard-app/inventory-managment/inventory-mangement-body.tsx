@@ -33,7 +33,7 @@ export default function InventoryManagementBody({
 						quantity={quantity}
 						actionFunc={<DeleteProducts />}
 						editJsxElement={<UpdateProducts />}
-						detailsJsxElement={ProductDetails}
+						detailsJsxElement={<ProductDetails />}
 						/>
 					</ItemIdentifierProvider>
 				: <NoDataFoundCmp dataName={resource} />}
