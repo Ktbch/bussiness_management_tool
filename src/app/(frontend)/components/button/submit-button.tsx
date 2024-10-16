@@ -14,7 +14,6 @@ export const SubmitButton = ({
 	className
 }: IProps) => {
 	const { pending } = useFormStatus();
-	console.log(pending);
 	return (
 		<button
 			disabled={pending}

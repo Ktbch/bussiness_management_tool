@@ -12,11 +12,13 @@ export default function CreateOrders({ off }: { off: () => void }) {
 
 	return (
 		<FormSchema
-			actionFn={handleMutation}
+			actionFn={formData => {
+				handleMutation({ formData });
+			}}
 			state={state}
 			className="border p-3 w-full"
 			fields={CreateOrderFields}
-			options={["paid", "unppaid"]}
+			options={["paid", "unpaid"]}
 			crudStyles="grid gap-2 mb-4 sm:grid-cols-2"
 		/>
 	);

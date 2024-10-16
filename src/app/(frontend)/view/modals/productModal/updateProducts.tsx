@@ -13,6 +13,7 @@ export const UpdateProducts = () => {
 	const { handleMutation, state } = useMutation(updateProduct, off);
 	const { identifier } = useItemIdentifier();
 
+	console.log(` update identifier ${identifier}`);
 	return (
 		<FormSchema
 			actionFn={formData => {

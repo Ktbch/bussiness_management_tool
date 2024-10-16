@@ -24,7 +24,6 @@ export const useMutation = (mutateFunc: MutateFunc, off?:Off) => {
     useEffect(() => {
 		const { checkSuccessOfAction, restoreActionState } = manageState(state)
 		
-		console.log(checkSuccessOfAction)
 		
 		if (checkSuccessOfAction()) {
 			off && off()

@@ -6,7 +6,15 @@ import { eq } from "drizzle-orm"
 
 
 // the problem i want to solve i don't want an order to be created when an a product does not exist.
-// 
+//
+interface IUpdateOrder {
+    id?: number;
+    productSold?: string;
+    quantitySold?: string;
+    price?: string;
+    discount?: string | null;
+    status?: "paid" | "unpaid" | null;
+}
 
 export default function salesOrderRepository() {
     return {
@@ -28,8 +36,8 @@ export default function salesOrderRepository() {
             try {
                 const productExist = await db.select().from(productTable).where(eq(productTable.productName, newSalesOrder.productSold))
 
-                console.log(productExist)
-                if (!productExist) return 'product does not exist'
+                console.log(productExist[0])
+                if (!productExist[0]) return 'product does not exist'
                 if (productExist[0].productQuantity < newSalesOrder.quantitySold) return 'you can sell more than quantity avaliable'
 
                 const order = await db.insert(orderTable).values(newSalesOrder).returning()
@@ -70,10 +78,11 @@ export default function salesOrderRepository() {
             return deletedOrder
         },
 
-        async updateOrderRepository(salesOrder: SalesOrder) {
+        async updateOrderRepository(salesOrder: IUpdateOrder) {
             try {
                 //  TODO IMPROVE THIS LOGIC
-                const orderFound = await db.select().from(orderTable).where(eq(orderTable.id, salesOrder.id))
+
+                const orderFound = await db.select().from(orderTable).where(eq(orderTable.id, salesOrder.id!))
                 if (!orderFound[0]) return 'order does not exist'
                 const updatedOrder = await db.update(orderTable).set(salesOrder).where(eq(orderTable.id, orderFound[0].id))
                 return 'updated succesfully'

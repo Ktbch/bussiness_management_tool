@@ -22,3 +22,11 @@ export const createOrderSchema = z.object({
     discount: z.string().optional(),
     status: z.enum(['paid', 'unpaid']).optional().nullable()
 })
+
+export const updateOrderSchema = z.object({
+    productSold: z.string().min(1, { message: 'product sold must be at least one charcter' }).optional(),
+    quantitySold: z.string().min(1, { message: 'quantity must be at least one chracters' }).optional(),
+    price: z.string().min(1, { message: 'price must be at least one chracters' }).optional(),
+    discount: z.string().optional(),
+    status: z.enum(['paid', 'unpaid']).optional().nullable()
+})

@@ -12,7 +12,7 @@ export interface IOptionsFuncConfig<T extends Product | SalesOrder> {
 	id: number;
 	refresh: () => void;
 
-	detailsModalCmp: ({ data }: { data: T }) => React.JSX.Element;
+	detailsModalCmp: React.JSX.Element;
 	data: T;
 }
 
@@ -54,7 +54,7 @@ export default class GenerateOptionsObj<T extends SalesOrder | Product> {
 	openDetailsModal = () => {
 		const { on, detailsModalCmp, setModalCmp, data } = this.optionsParams;
 		on();
-		setModalCmp(detailsModalCmp({ data: data }));
+		setModalCmp(detailsModalCmp);
 	};
 
 	generateOptionsFunction = (option: TOption) => {
